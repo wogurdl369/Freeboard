@@ -25,6 +25,8 @@ if(request.getParameter("boardPw") == "" || request.getParameter("boardSubject")
 	System.out.println("param boardImg:" +boardImg);
 	String boardfileName = request.getParameter("boardfileName");
 	System.out.println("param boardfileName:" +boardfileName);
+	String boardremark = request.getParameter("boardremark");
+	System.out.println("param boardremark:" +boardremark);
 	
 	Board board = new Board();
 	board.setBoardPw(boardPw);
@@ -33,6 +35,7 @@ if(request.getParameter("boardPw") == "" || request.getParameter("boardSubject")
 	board.setBoardUser(boardUser);
 	board.setBoardImg(boardImg);
 	board.setBoardfileName(boardfileName);
+	board.setBoardremark(boardremark);
 	
 	BoardDao boardDao = new BoardDao();
 	int rowCount = boardDao.insertBoard(board);

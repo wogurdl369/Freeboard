@@ -44,6 +44,8 @@
 	<div><input name="boardImg" id="boardImg" type="text"/></div>
 	<div>이미지파일 : </div>
 	<div><input name="boardfileName" id="boardfileName" type="text"/></div>
+	<div>기타 : </div>
+	<div><input name="boardremark" id="boardremark" type="text"/></div>
 	<div>
 		<input type="submit" value="글입력"/>
 		<input type="reset" value="초기화"/>

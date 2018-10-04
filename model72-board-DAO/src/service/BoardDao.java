@@ -21,7 +21,7 @@ public class BoardDao {
 		int rowCount = 0;
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String sql = "UPDATE freeboard SET board_subject=?, board_content=?, board_reg=?, board_modifDate=?, board_imgSize=?, board_fileName=? WHERE no=? AND board_pw=?";
+		String sql = "UPDATE freeboard SET board_subject=?, board_content=?, board_reg=?, board_modifDate=?, board_imgSize=?, board_fileName=?, board_remark WHERE no=? AND board_pw=?";
 		try {
 			connection = this.getConnection();
 			statement = connection.prepareStatement(sql);
@@ -31,8 +31,9 @@ public class BoardDao {
 			statement.setString(4,board.getBoardmodifDate());
 			statement.setInt(5,board.getBoardImg());
 			statement.setString(6,board.getBoardfileName());
-			statement.setInt(7,board.getBoardNo());
-			statement.setString(8,board.getBoardPw());
+			statement.setString(7,board.getBoardremark());
+			statement.setInt(8,board.getBoardNo());
+			statement.setString(9,board.getBoardPw());
 			rowCount = statement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,7 +68,7 @@ public class BoardDao {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
-		String sql = "SELECT board_subject, board_content, board_reg, board_modifDate, board_user, board_hit, board_imgSize, board_fileName FROM freeboard WHERE no=?";
+		String sql = "SELECT board_subject, board_content, board_reg, board_modifDate, board_user, board_hit, board_imgSize, board_fileName, board_remark FROM freeboard WHERE no=?";
 		try {
 			connection = this.getConnection();
 			statement = connection.prepareStatement(sql);
@@ -84,6 +85,7 @@ public class BoardDao {
 				board.setBoardHit(resultset.getString("board_hit"));
 				board.setBoardImg(resultset.getInt("board_imgSize"));
 				board.setBoardfileName(resultset.getString("board_fileName"));
+				board.setBoardremark(resultset.getString("board_remark"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +101,7 @@ public class BoardDao {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultset = null;
-		String sql = "SELECT no, board_subject, board_content, board_reg, board_modifDate, board_user, board_hit, board_imgSize, board_fileName FROM freeboard ORDER BY no DESC LIMIT ?, ?";
+		String sql = "SELECT no, board_subject, board_content, board_reg, board_modifDate, board_user, board_hit, board_imgSize, board_fileName, board_remark FROM freeboard ORDER BY no DESC LIMIT ?, ?";
 		try {
 			connection = this.getConnection();
 			statement = connection.prepareStatement(sql);
@@ -117,6 +119,7 @@ public class BoardDao {
 				board.setBoardHit(resultset.getString("board_hit"));
 				board.setBoardImg(resultset.getInt("board_imgSize"));
 				board.setBoardfileName(resultset.getString("board_fileName"));
+				board.setBoardremark(resultset.getString("board_remark"));
 				list.add(board);
 			}
 		} catch (Exception e) {
@@ -154,7 +157,7 @@ public class BoardDao {
 		int rowCount = 0;
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String sql = "INSERT INTO freeboard(board_pw, board_subject, board_content, board_user, board_reg, board_modifDate, board_imgSize, board_fileName) values(?,?,?,?,now(),now(),?,?)";
+		String sql = "INSERT INTO freeboard(board_pw, board_subject, board_content, board_user, board_reg, board_modifDate, board_imgSize, board_fileName, board_remark) values(?,?,?,?,now(),now(),?,?,?)";
 		try {
 			connection = this.getConnection();
 			statement = connection.prepareStatement(sql);
@@ -164,6 +167,7 @@ public class BoardDao {
 			statement.setString(4,board.getBoardUser());
 			statement.setInt(5,board.getBoardImg());
 			statement.setString(6,board.getBoardfileName());
+			statement.setString(7,board.getBoardremark());
 			rowCount = statement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

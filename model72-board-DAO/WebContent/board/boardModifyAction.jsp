@@ -26,6 +26,8 @@ null) {
 	System.out.println("boardModifyAction param boardImg :"+boardImg);
 	String boardfileName = request.getParameter("boardfileName");
 	System.out.println("boardModifyAction param boardfileName :"+boardfileName);
+	String boardremark = request.getParameter("boardremark");
+	System.out.println("boardModifyAction param boardremark :"+boardremark);
 
 	Board board = new Board();
 	board.setBoardNo(boardNo);
@@ -34,6 +36,7 @@ null) {
 	board.setBoardContent(boardContent);
 	board.setBoardImg(boardImg);
 	board.setBoardfileName(boardfileName);
+	board.setBoardremark(boardremark);
 	
 	BoardDao boardDao = new BoardDao();
 	boardDao.updateBoard(board);

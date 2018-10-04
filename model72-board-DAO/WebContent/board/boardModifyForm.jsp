@@ -31,6 +31,8 @@ if(request.getParameter("boardNo") == null) {
 		<div><input	name="boardImg" value="<%=board.getBoardImg()%>"id="boardImg" type="text"/></div>
 		<div>이미지파일 : </div>
 		<div><input	name="boardfileName" value="<%=board.getBoardfileName()%>"id="boardfileName" type="text"/></div>
+		<div>기타 : </div>
+		<div><input	name="boardremark" value="<%=board.getBoardremark()%>"id="boardremark" type="text"/></div>
 		<div>
 		
 			<input type="submit" value="글수정"/>
